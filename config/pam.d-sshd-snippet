@@ -1,0 +1,5 @@
+# Example: use OIDC for root, keep the normal PAM stack for other users.
+# Insert before @include common-auth in /etc/pam.d/sshd.
+
+auth [success=1 default=ignore] pam_succeed_if.so quiet user != root
+auth [success=done default=die] /usr/local/lib/security/pam_ssh_oidc.so

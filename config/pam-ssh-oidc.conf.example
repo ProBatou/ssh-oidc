@@ -1,0 +1,31 @@
+[ssh-oidc]
+# OIDC issuer, without trailing slash.
+issuer=https://auth.example.com
+
+# Device Authorization Flow client.
+client_id=YOUR_PUBLIC_CLIENT_ID
+# Optional for confidential clients. Public Device Flow clients normally leave this unset.
+# client_secret=YOUR_CLIENT_SECRET
+
+scope=openid profile email groups
+timeout=180
+
+# Linux accounts allowed to use this PAM module.
+allowed_linux_users=root
+
+# Authorization after OIDC authentication.
+# A match in allow_users OR require_groups grants access.
+# If require_groups is empty, an OIDC identity matching the Linux username is accepted.
+allow_users=
+require_groups=ssh-admins
+
+# Optional ntfy integration. For OpenSSH, ntfy is strongly recommended because
+# PAM informational messages may be buffered and the module stays silent in sshd.
+ntfy_url=https://ntfy.example.com
+ntfy_topic=SSH_LOGIN
+
+# Optional ntfy authentication. Prefer a private/authenticated topic.
+# Use either a bearer token or basic credentials.
+# ntfy_token=YOUR_NTFY_TOKEN
+# ntfy_user=YOUR_NTFY_USER
+# ntfy_password=YOUR_NTFY_PASSWORD

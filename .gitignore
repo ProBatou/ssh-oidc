@@ -1,0 +1,6 @@
+build/
+*.so
+*.h
+*.log
+*.secret
+.env
